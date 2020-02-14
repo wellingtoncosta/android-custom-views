@@ -3,7 +3,6 @@ package io.github.wellingtoncosta.customviews.api.impl
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.ResponseOf
 import com.github.kittinunf.fuel.coroutines.awaitStringResponse
-import io.github.wellingtoncosta.customviews.BuildConfig.API_URL
 import io.github.wellingtoncosta.customviews.api.UserService
 import io.github.wellingtoncosta.customviews.api.response.UserResponse
 import io.github.wellingtoncosta.customviews.api.response.toDomain
@@ -23,7 +22,7 @@ class UserServiceFuelImpl(private val json: Json) : UserService {
     private val serializer = UserResponse.serializer()
 
     override suspend fun fetchAll() = withContext(Dispatchers.IO) {
-        Fuel.get("$API_URL/users")
+        Fuel.get("/users")
             .awaitStringResponse()
             .run {
                 when (second.statusCode) {
@@ -35,7 +34,7 @@ class UserServiceFuelImpl(private val json: Json) : UserService {
     }
 
     override suspend fun fetchOne(userName: String) = withContext(Dispatchers.IO) {
-        Fuel.get("$API_URL/users/$userName")
+        Fuel.get("/users/$userName")
             .awaitStringResponse()
             .throwOrThen(userName) { response ->
                 json.parse(serializer, response).toDomain()
@@ -43,7 +42,7 @@ class UserServiceFuelImpl(private val json: Json) : UserService {
     }
 
     override suspend fun fetchFollowers(userName: String) = withContext(Dispatchers.IO) {
-        Fuel.get("$API_URL/users/$userName/followers")
+        Fuel.get("/users/$userName/followers")
             .awaitStringResponse()
             .throwOrThen(userName) { response ->
                 json.parse(serializer.list, response).map { it.toDomain() }
@@ -51,7 +50,7 @@ class UserServiceFuelImpl(private val json: Json) : UserService {
     }
 
     override suspend fun fetchFollowing(userName: String) = withContext(Dispatchers.IO) {
-        Fuel.get("$API_URL/users/$userName/following")
+        Fuel.get("/users/$userName/following")
             .awaitStringResponse()
             .throwOrThen(userName) { response ->
                 json.parse(serializer.list, response).map { it.toDomain() }

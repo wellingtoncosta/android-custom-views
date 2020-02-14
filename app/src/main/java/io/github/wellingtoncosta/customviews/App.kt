@@ -1,6 +1,8 @@
 package io.github.wellingtoncosta.customviews
 
 import android.app.Application
+import com.github.kittinunf.fuel.core.FuelManager
+import io.github.wellingtoncosta.customviews.BuildConfig.API_URL
 import io.github.wellingtoncosta.customviews.api.RepositoryService
 import io.github.wellingtoncosta.customviews.api.UserService
 import io.github.wellingtoncosta.customviews.api.impl.RepositoryServiceFuelmpl
@@ -25,6 +27,8 @@ open class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+
+        FuelManager.instance.basePath = API_URL
 
         startKoin()
     }

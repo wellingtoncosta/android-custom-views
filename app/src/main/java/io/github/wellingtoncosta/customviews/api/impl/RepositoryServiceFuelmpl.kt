@@ -2,7 +2,6 @@ package io.github.wellingtoncosta.customviews.api.impl
 
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.coroutines.awaitStringResponse
-import io.github.wellingtoncosta.customviews.BuildConfig.API_URL
 import io.github.wellingtoncosta.customviews.api.RepositoryService
 import io.github.wellingtoncosta.customviews.api.response.RepositoryResponse
 import io.github.wellingtoncosta.customviews.api.response.toDomain
@@ -22,7 +21,7 @@ class RepositoryServiceFuelmpl(private val json: Json) : RepositoryService {
     private val serializer = RepositoryResponse.serializer().list
 
     override suspend fun fetchAll(userName: String) = withContext(Dispatchers.IO) {
-        Fuel.get("$API_URL/users/$userName/repos")
+        Fuel.get("/users/$userName/repos")
             .awaitStringResponse()
             .run {
                 when (second.statusCode) {
