@@ -7,10 +7,12 @@ import io.github.wellingtoncosta.customviews.api.RepositoryService
 import io.github.wellingtoncosta.customviews.api.UserService
 import io.github.wellingtoncosta.customviews.api.impl.RepositoryServiceFuelmpl
 import io.github.wellingtoncosta.customviews.api.impl.UserServiceFuelImpl
+import io.github.wellingtoncosta.customviews.ui.*
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.JsonConfiguration
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.dsl.module
@@ -22,6 +24,16 @@ open class App : Application() {
             single { Json(JsonConfiguration.Stable.copy(strictMode = false)) }
             single<UserService> { UserServiceFuelImpl(json = get()) }
             single<RepositoryService> { RepositoryServiceFuelmpl(json = get()) }
+        }
+    }
+
+    private val viewModelModule: Module by lazy {
+        module {
+            viewModel { FollowersViewModel(get()) }
+            viewModel { FollowingViewModel(get()) }
+            viewModel { RepositoriesViewModel(get()) }
+            viewModel { UsersViewModel(get()) }
+            viewModel { UserViewModel(get()) }
         }
     }
 
@@ -43,6 +55,7 @@ open class App : Application() {
         }
     }
 
-    open val koinModules: List<Module> get() = listOf(apiModule)
+    open val koinModules: List<Module>
+        get() = apiModule + viewModelModule
 
 }
