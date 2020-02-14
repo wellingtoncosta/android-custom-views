@@ -96,6 +96,9 @@ dependencies {
     // Google Material Design
     implementation("com.google.android.material:material:1.1.0")
 
+    // Simple Stack
+    implementation("com.github.Zhuinden:simple-stack:2.2.4")
+
     // Testing
     testImplementation("junit:junit:4.13")
     testImplementation("io.mockk:mockk:1.9.3")
