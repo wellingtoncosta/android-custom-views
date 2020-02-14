@@ -18,15 +18,12 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.list
 
-class UserServiceFuelImpl(
-    private val fuel: Fuel,
-    private val json: Json
-) : UserService {
+class UserServiceFuelImpl(private val json: Json) : UserService {
 
     private val serializer = UserResponse.serializer()
 
     override suspend fun fetchAll() = withContext(Dispatchers.IO) {
-        fuel.get("$API_URL/users")
+        Fuel.get("$API_URL/users")
             .awaitStringResponse()
             .run {
                 when (second.statusCode) {
@@ -38,7 +35,7 @@ class UserServiceFuelImpl(
     }
 
     override suspend fun fetchOne(userName: String) = withContext(Dispatchers.IO) {
-        fuel.get("$API_URL/users/$userName")
+        Fuel.get("$API_URL/users/$userName")
             .awaitStringResponse()
             .throwOrThen(userName) { response ->
                 json.parse(serializer, response).toDomain()
@@ -46,7 +43,7 @@ class UserServiceFuelImpl(
     }
 
     override suspend fun fetchFollowers(userName: String) = withContext(Dispatchers.IO) {
-        fuel.get("$API_URL/users/$userName/followers")
+        Fuel.get("$API_URL/users/$userName/followers")
             .awaitStringResponse()
             .throwOrThen(userName) { response ->
                 json.parse(serializer.list, response).map { it.toDomain() }
@@ -54,7 +51,7 @@ class UserServiceFuelImpl(
     }
 
     override suspend fun fetchFollowing(userName: String) = withContext(Dispatchers.IO) {
-        fuel.get("$API_URL/users/$userName/following")
+        Fuel.get("$API_URL/users/$userName/following")
             .awaitStringResponse()
             .throwOrThen(userName) { response ->
                 json.parse(serializer.list, response).map { it.toDomain() }

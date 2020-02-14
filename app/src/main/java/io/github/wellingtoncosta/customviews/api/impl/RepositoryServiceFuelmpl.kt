@@ -17,15 +17,12 @@ import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.list
 
-class RepositoryServiceFuelmpl(
-    private val fuel: Fuel,
-    private val json: Json
-) : RepositoryService {
+class RepositoryServiceFuelmpl(private val json: Json) : RepositoryService {
 
     private val serializer = RepositoryResponse.serializer().list
 
     override suspend fun fetchAll(userName: String) = withContext(Dispatchers.IO) {
-        fuel.get("$API_URL/users/$userName/repos")
+        Fuel.get("$API_URL/users/$userName/repos")
             .awaitStringResponse()
             .run {
                 when (second.statusCode) {
