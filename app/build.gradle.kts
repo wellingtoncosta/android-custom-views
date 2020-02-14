@@ -9,7 +9,7 @@ android {
     buildToolsVersion = "29.0.2"
 
     defaultConfig {
-        applicationId = "io.github.com.wellingtoncosta.customviews"
+        applicationId = "io.github.wellingtoncosta.customviews"
         minSdkVersion(16)
         targetSdkVersion(29)
         versionCode = 1

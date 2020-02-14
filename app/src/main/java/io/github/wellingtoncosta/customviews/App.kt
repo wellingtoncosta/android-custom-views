@@ -1,4 +1,4 @@
-package io.github.com.wellingtoncosta.customviews
+package io.github.wellingtoncosta.customviews
 
 import android.app.Application
 

@@ -1,4 +1,4 @@
-package io.github.com.wellingtoncosta.customviews
+package io.github.wellingtoncosta.customviews.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
