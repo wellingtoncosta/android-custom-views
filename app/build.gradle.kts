@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
     id("kotlinx-serialization")
 }
 
@@ -70,6 +71,10 @@ configurations {
     all { resolutionStrategy.force("junit:junit:4.13") }
 }
 
+kapt {
+    useBuildCache = true
+}
+
 dependencies {
     // Android
     implementation("androidx.core:core-ktx:1.2.0")
@@ -79,14 +84,14 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
+    // Dagger
+    implementation("com.google.dagger:dagger:2.26")
+    kapt("com.google.dagger:dagger-compiler:2.26")
+
     // Fuel
     implementation("com.github.kittinunf.fuel:fuel:2.2.1")
     implementation("com.github.kittinunf.fuel:fuel-coroutines:2.2.1")
     implementation("com.github.kittinunf.fuel:fuel-kotlinx-serialization:2.2.1")
-
-    // Koin
-    implementation("org.koin:koin-androidx-scope:2.0.1")
-    implementation("org.koin:koin-androidx-viewmodel:2.0.1")
 
     // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.70")
