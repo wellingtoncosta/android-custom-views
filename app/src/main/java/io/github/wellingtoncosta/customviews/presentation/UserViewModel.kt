@@ -1,4 +1,4 @@
-package io.github.wellingtoncosta.customviews.ui
+package io.github.wellingtoncosta.customviews.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,13 +8,13 @@ import io.github.wellingtoncosta.customviews.api.UserService
 import io.github.wellingtoncosta.customviews.domain.entity.User
 import kotlinx.coroutines.launch
 
-class FollowersViewModel(private val service: UserService) : ViewModel() {
+class UserViewModel(private val service: UserService) : ViewModel() {
 
-    private val _followers = MutableLiveData<List<User>>()
+    private val _user = MutableLiveData<User>()
     private val _loading = MutableLiveData<Boolean>()
     private val _error = MutableLiveData<Throwable>()
 
-    val followers: LiveData<List<User>> get() = _followers
+    val user: LiveData<User> get() = _user
     val loading: LiveData<Boolean> get() = _loading
     val error: LiveData<Throwable> get() = _error
 
@@ -22,7 +22,7 @@ class FollowersViewModel(private val service: UserService) : ViewModel() {
         viewModelScope.launch {
             try {
                 _loading.value = true
-                _followers.value = service.fetchFollowers(userName)
+                _user.value = service.fetchOne(userName)
             } catch (exception: Throwable) {
                 _error.value = exception
             } finally {
