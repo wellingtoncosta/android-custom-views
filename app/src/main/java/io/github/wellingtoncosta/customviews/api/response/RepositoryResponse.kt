@@ -4,12 +4,12 @@ import io.github.wellingtoncosta.customviews.domain.entity.Repository
 import kotlinx.serialization.Serializable
 
 @Serializable data class RepositoryResponse(
-    val name: String,
-    val description: String?,
-    val forks_count: Int,
-    val open_issues_count: Int,
-    val stargazers_count: Int,
-    val watchers: Int
+    val name: String = "",
+    val description: String = "",
+    val forks_count: Int = 0,
+    val open_issues_count: Int = 0,
+    val stargazers_count: Int = 0,
+    val watchers: Int = 0
 )
 
 fun RepositoryResponse.toDomain() = Repository(

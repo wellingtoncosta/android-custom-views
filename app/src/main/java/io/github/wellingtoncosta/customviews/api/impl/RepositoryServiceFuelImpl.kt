@@ -8,15 +8,17 @@ import io.github.wellingtoncosta.customviews.api.response.toDomain
 import io.github.wellingtoncosta.customviews.api.util.HTTP_200
 import io.github.wellingtoncosta.customviews.api.util.HTTP_404
 import io.github.wellingtoncosta.customviews.api.util.HTTP_500
+import io.github.wellingtoncosta.customviews.config.JsonConfig.json
 import io.github.wellingtoncosta.customviews.domain.exception.NetworkException
 import io.github.wellingtoncosta.customviews.domain.exception.ServerFailureException
 import io.github.wellingtoncosta.customviews.domain.exception.UserNotFoundException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import kotlinx.serialization.builtins.list
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.list
+import javax.inject.Inject
 
-class RepositoryServiceFuelmpl(private val json: Json) : RepositoryService {
+class RepositoryServiceFuelImpl @Inject constructor() : RepositoryService {
 
     private val serializer = RepositoryResponse.serializer().list
 

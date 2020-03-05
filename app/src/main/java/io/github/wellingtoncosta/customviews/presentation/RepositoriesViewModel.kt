@@ -7,8 +7,9 @@ import androidx.lifecycle.viewModelScope
 import io.github.wellingtoncosta.customviews.api.RepositoryService
 import io.github.wellingtoncosta.customviews.domain.entity.Repository
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RepositoriesViewModel(private val service: RepositoryService) : ViewModel() {
+class RepositoriesViewModel @Inject constructor(private val service: RepositoryService) : ViewModel() {
 
     private val _repositories = MutableLiveData<List<Repository>>()
     private val _loading = MutableLiveData<Boolean>()

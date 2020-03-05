@@ -7,8 +7,9 @@ import androidx.lifecycle.viewModelScope
 import io.github.wellingtoncosta.customviews.api.UserService
 import io.github.wellingtoncosta.customviews.domain.entity.User
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class UsersViewModel(private val service: UserService) : ViewModel() {
+class UsersViewModel @Inject constructor(private val service: UserService) : ViewModel() {
 
     private val _users = MutableLiveData<List<User>>()
     private val _loading = MutableLiveData<Boolean>()

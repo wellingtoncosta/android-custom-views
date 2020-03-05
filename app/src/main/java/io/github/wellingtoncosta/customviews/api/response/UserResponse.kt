@@ -4,13 +4,13 @@ import io.github.wellingtoncosta.customviews.domain.entity.User
 import kotlinx.serialization.Serializable
 
 @Serializable data class UserResponse(
-    val login: String,
-    val name: String?,
-    val avatar_url: String,
-    val public_repos: Int,
-    val followers: Int,
-    val following: Int,
-    val starred: Int
+    val login: String = "",
+    val name: String = "",
+    val avatar_url: String = "",
+    val public_repos: Int = 0,
+    val followers: Int = 0,
+    val following: Int = 0,
+    val starred: Int = 0
 )
 
 fun UserResponse.toDomain() = User(

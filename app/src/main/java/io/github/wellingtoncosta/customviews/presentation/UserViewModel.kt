@@ -7,8 +7,9 @@ import androidx.lifecycle.viewModelScope
 import io.github.wellingtoncosta.customviews.api.UserService
 import io.github.wellingtoncosta.customviews.domain.entity.User
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class UserViewModel(private val service: UserService) : ViewModel() {
+class UserViewModel @Inject constructor(private val service: UserService) : ViewModel() {
 
     private val _user = MutableLiveData<User>()
     private val _loading = MutableLiveData<Boolean>()
@@ -18,11 +19,11 @@ class UserViewModel(private val service: UserService) : ViewModel() {
     val loading: LiveData<Boolean> get() = _loading
     val error: LiveData<Throwable> get() = _error
 
-    fun load(userName: String) {
+    fun load(username: String) {
         viewModelScope.launch {
             try {
                 _loading.value = true
-                _user.value = service.fetchOne(userName)
+                _user.value = service.fetchOne(username)
             } catch (exception: Throwable) {
                 _error.value = exception
             } finally {
