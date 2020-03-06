@@ -96,8 +96,8 @@ dependencies {
 
     // Kotlin
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.70")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.4")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.20.0")
 
     // Google Material Design
@@ -124,8 +124,4 @@ dependencies {
     androidTestImplementation("com.squareup.okhttp3:okhttp-tls:4.3.1")
     androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.3.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
-}
-
-androidExtensions {
-    isExperimental = true
 }
