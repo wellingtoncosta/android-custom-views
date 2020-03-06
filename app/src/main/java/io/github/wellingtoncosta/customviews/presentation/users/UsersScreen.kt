@@ -7,22 +7,20 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.wellingtoncosta.customviews.App
+import io.github.wellingtoncosta.customviews.databinding.ScreenUsersBinding
 import io.github.wellingtoncosta.customviews.domain.entity.User
 import io.github.wellingtoncosta.customviews.presentation.UsersViewModel
-import kotlinx.android.synthetic.main.screen_users.view.*
 import javax.inject.Inject
 
 class UsersScreen : RelativeLayout {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
+    private lateinit var binding: ScreenUsersBinding
+
     @Inject lateinit var viewModel: UsersViewModel
 
     private val usersAdapter = UsersAdapter()
-
-    /*private val viewModel by lazy {
-        Navigator.lookupService<UsersViewModel>(context, UsersScreenKey.VIEW_MODEL_TAG)
-    }*/
 
     private val usersObserver = Observer<List<User>> { users ->
         usersAdapter.dataSource = users
@@ -30,7 +28,8 @@ class UsersScreen : RelativeLayout {
 
     override fun onFinishInflate() {
         super.onFinishInflate()
-        users.run {
+        binding = ScreenUsersBinding.bind(this)
+        binding.users.run {
             adapter = usersAdapter
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         }
@@ -47,4 +46,5 @@ class UsersScreen : RelativeLayout {
         super.onDetachedFromWindow()
         viewModel.users.removeObserver(usersObserver)
     }
+
 }
