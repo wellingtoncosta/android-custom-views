@@ -1,10 +1,11 @@
 package io.github.wellingtoncosta.customviews.common.navigation
 
+import com.zhuinden.simplestack.ScopeKey
 import com.zhuinden.simplestack.ScopedServices
 import com.zhuinden.simplestack.ServiceBinder
 
 class ServiceProvider : ScopedServices {
-    interface HasServices {
+    interface HasServices : ScopeKey {
         fun bindServices(binder: ServiceBinder)
     }
 

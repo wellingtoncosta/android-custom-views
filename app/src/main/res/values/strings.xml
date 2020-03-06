@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Android Custom Views</string>
+    <string name="text_user_description">%1$d repos | %2$d followers | %3$d following</string>
 </resources>

@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("kotlinx-serialization")
+    id("kotlin-android-extensions")
 }
 
 android {
@@ -105,6 +106,10 @@ dependencies {
     // Simple Stack
     implementation("com.github.Zhuinden:simple-stack:2.2.4")
 
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.11.0")
+    kapt("com.github.bumptech.glide:compiler:4.11.0")
+
     // Testing
     testImplementation("junit:junit:4.13")
     testImplementation("io.mockk:mockk:1.9.3")
@@ -119,4 +124,8 @@ dependencies {
     androidTestImplementation("com.squareup.okhttp3:okhttp-tls:4.3.1")
     androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.3.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
+}
+
+androidExtensions {
+    isExperimental = true
 }

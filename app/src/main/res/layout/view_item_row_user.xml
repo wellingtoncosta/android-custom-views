@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="86dp"
+    android:background="@color/colorPrimary">
+
+    <io.github.wellingtoncosta.customviews.presentation.component.user.UserImageView
+        android:id="@+id/imageUserAvatar"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="16dp"
+        />
+
+    <io.github.wellingtoncosta.customviews.presentation.component.user.UserNameView
+        style="@style/Widget.Text.UserName"
+        android:id="@+id/textUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="-8dp"
+        android:layout_alignTop="@+id/imageUserAvatar"
+        android:layout_toEndOf="@+id/imageUserAvatar"
+        android:layout_toRightOf="@+id/imageUserAvatar"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        />
+
+    <io.github.wellingtoncosta.customviews.presentation.component.user.UserDescriptionView
+        style="@style/Widget.Text.UserDescription"
+        android:id="@+id/textUserDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textUserName"
+        android:layout_alignLeft="@+id/textUserName"
+        android:layout_alignEnd="@+id/textUserName"
+        android:layout_alignRight="@+id/textUserName"
+        android:layout_below="@+id/textUserName"
+        />
+</RelativeLayout>

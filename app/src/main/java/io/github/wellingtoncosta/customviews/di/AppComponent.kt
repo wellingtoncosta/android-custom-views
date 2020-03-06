@@ -3,8 +3,8 @@ package io.github.wellingtoncosta.customviews.di
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
-import io.github.wellingtoncosta.customviews.App
-import io.github.wellingtoncosta.customviews.presentation.MainActivity
+import io.github.wellingtoncosta.customviews.presentation.UsersViewModel
+import io.github.wellingtoncosta.customviews.presentation.main.MainActivity
 import javax.inject.Singleton
 
 @Singleton
@@ -20,4 +20,5 @@ interface AppComponent {
 
     fun inject(mainActivity: MainActivity)
 
+    fun usersViewModel(): UsersViewModel
 }
