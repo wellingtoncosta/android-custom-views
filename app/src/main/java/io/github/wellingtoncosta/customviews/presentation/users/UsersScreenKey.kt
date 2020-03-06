@@ -6,7 +6,7 @@ import io.github.wellingtoncosta.customviews.presentation.navigation.ScreenKey
 import io.github.wellingtoncosta.customviews.presentation.navigation.ServiceProvider
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize data class UsersScreenKey constructor(
+@Parcelize data class UsersScreenKey(
     val placeholder: String = ""
 ) : ScreenKey, ServiceProvider.HasServices {
 
