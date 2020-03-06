@@ -52,6 +52,10 @@ android {
         }
     }
 
+    viewBinding {
+        isEnabled = true
+    }
+
     testOptions {
         unitTests.isReturnDefaultValues = true
     }
@@ -124,4 +128,8 @@ dependencies {
     androidTestImplementation("com.squareup.okhttp3:okhttp-tls:4.3.1")
     androidTestImplementation("com.squareup.okhttp3:mockwebserver:4.3.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.2.0")
+}
+
+androidExtensions {
+    features = setOf("parcelize")
 }
