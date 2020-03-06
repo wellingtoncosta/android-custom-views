@@ -1,21 +1,21 @@
-package io.github.wellingtoncosta.customviews.presentation
+package io.github.wellingtoncosta.customviews.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import io.github.wellingtoncosta.customviews.api.RepositoryService
-import io.github.wellingtoncosta.customviews.domain.entity.Repository
+import io.github.wellingtoncosta.customviews.api.UserService
+import io.github.wellingtoncosta.customviews.domain.entity.User
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class RepositoriesViewModel @Inject constructor(private val service: RepositoryService) : ViewModel() {
+class FollowersViewModel @Inject constructor(private val service: UserService) : ViewModel() {
 
-    private val _repositories = MutableLiveData<List<Repository>>()
+    private val _followers = MutableLiveData<List<User>>()
     private val _loading = MutableLiveData<Boolean>()
     private val _error = MutableLiveData<Throwable>()
 
-    val repositories: LiveData<List<Repository>> get() = _repositories
+    val followers: LiveData<List<User>> get() = _followers
     val loading: LiveData<Boolean> get() = _loading
     val error: LiveData<Throwable> get() = _error
 
@@ -23,7 +23,7 @@ class RepositoriesViewModel @Inject constructor(private val service: RepositoryS
         viewModelScope.launch {
             try {
                 _loading.value = true
-                _repositories.value = service.fetchAll(userName)
+                _followers.value = service.fetchFollowers(userName)
             } catch (exception: Throwable) {
                 _error.value = exception
             } finally {
