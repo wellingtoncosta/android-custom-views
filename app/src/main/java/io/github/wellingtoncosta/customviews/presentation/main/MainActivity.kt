@@ -18,12 +18,10 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(mainContainer)
 
-        val key = UsersScreenKey()//.apply { onBindViewModel = { usersViewModel } }
-
         Navigator
             .configure()
             .setScopedServices(ServiceProvider())
-            .install(this, mainContainer, History.of(key))
+            .install(this, mainContainer, History.of(UsersScreenKey()))
     }
 
     override fun onBackPressed() {
