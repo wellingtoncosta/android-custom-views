@@ -6,6 +6,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <io.github.wellingtoncosta.customviews.presentation.component.common.LoadingView
+        android:id="@+id/loading"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_centerInParent="true" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/users"
         android:layout_width="match_parent"

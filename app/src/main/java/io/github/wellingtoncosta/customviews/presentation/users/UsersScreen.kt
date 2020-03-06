@@ -2,6 +2,7 @@ package io.github.wellingtoncosta.customviews.presentation.users
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.widget.RelativeLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -22,6 +23,10 @@ class UsersScreen : RelativeLayout {
 
     private val usersAdapter = UsersAdapter()
 
+    private val loadingObserver = Observer<Boolean> { isLoading ->
+        binding.loading.isLoading = isLoading
+    }
+
     private val usersObserver = Observer<List<User>> { users ->
         usersAdapter.dataSource = users
     }
@@ -40,11 +45,13 @@ class UsersScreen : RelativeLayout {
         super.onAttachedToWindow()
         viewModel.load()
         viewModel.users.observeForever(usersObserver)
+        viewModel.loading.observeForever(loadingObserver)
     }
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         viewModel.users.removeObserver(usersObserver)
+        viewModel.loading.removeObserver(loadingObserver)
     }
 
 }
