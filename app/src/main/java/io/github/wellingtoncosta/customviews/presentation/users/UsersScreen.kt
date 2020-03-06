@@ -2,7 +2,6 @@ package io.github.wellingtoncosta.customviews.presentation.users
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.widget.RelativeLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -10,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import io.github.wellingtoncosta.customviews.App
 import io.github.wellingtoncosta.customviews.databinding.ScreenUsersBinding
 import io.github.wellingtoncosta.customviews.domain.entity.User
-import io.github.wellingtoncosta.customviews.presentation.UsersViewModel
+import io.github.wellingtoncosta.customviews.presentation.viewmodel.UsersViewModel
 import javax.inject.Inject
 
 class UsersScreen : RelativeLayout {
