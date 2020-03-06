@@ -1,4 +1,4 @@
-package io.github.wellingtoncosta.customviews.presentation.main
+package io.github.wellingtoncosta.customviews.presentation
 
 import android.content.Context
 import android.os.Bundle
