@@ -5,11 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.wellingtoncosta.customviews.api.UserService
+import io.github.wellingtoncosta.customviews.di.ViewScope
 import io.github.wellingtoncosta.customviews.domain.entity.User
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class UsersViewModel @Inject constructor(private val service: UserService) : ViewModel() {
+@ViewScope
+class UsersViewModel @Inject constructor(
+    private val service: UserService
+) : ViewModel() {
 
     private val _users = MutableLiveData<List<User>>()
     private val _loading = MutableLiveData<Boolean>()

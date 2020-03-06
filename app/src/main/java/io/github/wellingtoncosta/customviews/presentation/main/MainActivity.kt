@@ -6,20 +6,24 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.zhuinden.simplestack.History
 import com.zhuinden.simplestack.navigator.Navigator
-import io.github.wellingtoncosta.customviews.common.navigation.ServiceProvider
+import io.github.wellingtoncosta.customviews.presentation.navigation.ServiceProvider
 import io.github.wellingtoncosta.customviews.presentation.users.UsersScreenKey
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val mainContainer = MainContainer(this)
+
         setContentView(mainContainer)
+
+        val key = UsersScreenKey()//.apply { onBindViewModel = { usersViewModel } }
 
         Navigator
             .configure()
             .setScopedServices(ServiceProvider())
-            .install(this, mainContainer, History.of(UsersScreenKey()))
+            .install(this, mainContainer, History.of(key))
     }
 
     override fun onBackPressed() {
