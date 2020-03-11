@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relative_layout"
     android:layout_width="match_parent"
     android:layout_height="86dp"
-    android:background="@color/colorPrimary">
+    android:background="?android:attr/selectableItemBackground">
 
     <io.github.wellingtoncosta.customviews.presentation.component.user.UserImageView
         android:id="@+id/imageUserAvatar"
@@ -12,8 +13,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
-        android:layout_margin="16dp"
-        />
+        android:layout_margin="16dp" />
 
     <io.github.wellingtoncosta.customviews.presentation.component.user.UserNameView
         style="@style/Widget.Text.UserName"
@@ -26,8 +26,7 @@
         android:layout_toEndOf="@+id/imageUserAvatar"
         android:layout_toRightOf="@+id/imageUserAvatar"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        />
+        android:layout_alignParentRight="true" />
 
     <io.github.wellingtoncosta.customviews.presentation.component.user.UserDescriptionView
         style="@style/Widget.Text.UserDescription"
@@ -38,6 +37,6 @@
         android:layout_alignLeft="@+id/textUserName"
         android:layout_alignEnd="@+id/textUserName"
         android:layout_alignRight="@+id/textUserName"
-        android:layout_below="@+id/textUserName"
-        />
+        android:layout_below="@+id/textUserName" />
+
 </RelativeLayout>

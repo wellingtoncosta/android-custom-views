@@ -2,6 +2,7 @@ package io.github.wellingtoncosta.customviews.presentation.users
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import android.widget.RelativeLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -23,7 +24,10 @@ class UsersScreen : RelativeLayout {
     private val usersAdapter = UsersAdapter()
 
     private val loadingObserver = Observer<Boolean> { isLoading ->
-        binding.loading.isLoading = isLoading
+        with(binding) {
+            progress.visibility = if (isLoading) View.VISIBLE else View.GONE
+            usersRecyclerView.visibility = if (isLoading) View.GONE else View.VISIBLE
+        }
     }
 
     private val usersObserver = Observer<List<User>> { users ->
@@ -33,7 +37,7 @@ class UsersScreen : RelativeLayout {
     override fun onFinishInflate() {
         super.onFinishInflate()
         binding = ScreenUsersBinding.bind(this)
-        binding.users.run {
+        binding.usersRecyclerView.run {
             adapter = usersAdapter
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
         }

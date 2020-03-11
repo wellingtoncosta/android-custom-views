@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import io.github.wellingtoncosta.customviews.R
-import io.github.wellingtoncosta.customviews.databinding.ViewItemRowUserBinding
+import io.github.wellingtoncosta.customviews.databinding.ItemUserBinding
 import io.github.wellingtoncosta.customviews.domain.entity.User
+import io.github.wellingtoncosta.customviews.presentation.extension.backstack
+import io.github.wellingtoncosta.customviews.presentation.users.details.UserDetailsScreenKey
 import kotlinx.android.extensions.LayoutContainer
 
 class UsersAdapter : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
@@ -18,7 +20,7 @@ class UsersAdapter : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.view_item_row_user, parent, false)
+            .inflate(R.layout.item_user, parent, false)
 
         return ViewHolder(view)
     }
@@ -29,13 +31,25 @@ class UsersAdapter : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
         holder.bind(dataSource[position])
     }
 
+    override fun onViewRecycled(holder: ViewHolder) {
+        super.onViewRecycled(holder)
+        holder.unbind()
+    }
+
     inner class ViewHolder (override val containerView: View): RecyclerView.ViewHolder(containerView), LayoutContainer {
-        private val binding = ViewItemRowUserBinding.bind(containerView)
+        private val binding = ItemUserBinding.bind(containerView)
 
         fun bind(user: User) = containerView.run {
             binding.imageUserAvatar.bind(user)
             binding.textUserName.bind(user)
             binding.textUserDescription.bind(user)
+            binding.relativeLayout.setOnClickListener {
+                containerView.backstack.goTo(UserDetailsScreenKey(username = user.userName))
+            }
+        }
+
+        fun unbind() {
+            binding.relativeLayout.setOnClickListener(null)
         }
     }
 }

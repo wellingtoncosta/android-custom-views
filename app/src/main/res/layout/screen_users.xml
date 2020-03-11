@@ -6,14 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <io.github.wellingtoncosta.customviews.presentation.component.common.LoadingView
-        android:id="@+id/loading"
+    <ProgressBar
+        android:id="@+id/progress"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_centerInParent="true" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/users"
+        android:id="@+id/users_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
@@ -23,6 +23,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/view_item_row_user"/>
+        tools:listitem="@layout/item_user"/>
 
 </io.github.wellingtoncosta.customviews.presentation.users.UsersScreen>
