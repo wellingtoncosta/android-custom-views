@@ -8,7 +8,7 @@ import io.github.wellingtoncosta.customviews.R
 import io.github.wellingtoncosta.customviews.databinding.ItemUserBinding
 import io.github.wellingtoncosta.customviews.domain.entity.User
 import io.github.wellingtoncosta.customviews.presentation.extension.backstack
-import io.github.wellingtoncosta.customviews.presentation.users.details.UserDetailsScreenKey
+import io.github.wellingtoncosta.customviews.presentation.users.detail.UserDetailScreenKey
 import kotlinx.android.extensions.LayoutContainer
 
 class UsersAdapter : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
@@ -44,7 +44,7 @@ class UsersAdapter : RecyclerView.Adapter<UsersAdapter.ViewHolder>() {
             binding.textUserName.bind(user)
             binding.textUserDescription.bind(user)
             binding.relativeLayout.setOnClickListener {
-                containerView.backstack.goTo(UserDetailsScreenKey(username = user.userName))
+                containerView.backstack.goTo(UserDetailScreenKey(user))
             }
         }
 

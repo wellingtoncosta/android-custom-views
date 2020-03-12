@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <io.github.wellingtoncosta.customviews.presentation.component.user.UserNameView
+        style="@style/Widget.Text.UserName"
+        android:id="@+id/textUserName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <io.github.wellingtoncosta.customviews.presentation.component.user.UserDescriptionView
+        style="@style/Widget.Text.UserDescription"
+        android:id="@+id/textUserDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

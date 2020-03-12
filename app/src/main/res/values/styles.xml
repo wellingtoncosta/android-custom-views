@@ -45,4 +45,9 @@
         <item name="android:textColor">@color/secondaryLight</item>
         <item name="android:textSize">14sp</item>
     </style>
+
+    <style name="Widget.Card.UserProfile" parent="CardView">
+        <item name="cardBackgroundColor">#fff</item>
+        <item name="cardCornerRadius">6dp</item>
+    </style>
 </resources>

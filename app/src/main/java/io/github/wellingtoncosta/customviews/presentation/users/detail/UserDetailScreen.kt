@@ -1,36 +1,39 @@
-package io.github.wellingtoncosta.customviews.presentation.users.details
+package io.github.wellingtoncosta.customviews.presentation.users.detail
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
-import android.view.ViewGroup
 import android.widget.RelativeLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.zhuinden.simplestack.Backstack
 import io.github.wellingtoncosta.customviews.R
 import io.github.wellingtoncosta.customviews.databinding.ScreenUserDetailsBinding
 import io.github.wellingtoncosta.customviews.presentation.extension.backstack
 
-class UserDetailsScreen : RelativeLayout {
+class UserDetailScreen : CoordinatorLayout {
     constructor(context: Context) : super(context)
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
     private lateinit var binding: ScreenUserDetailsBinding
 
+    private val screenKey by lazy {
+        Backstack.getKey<UserDetailScreenKey>(context)
+    }
+
+    private val user by lazy {
+        screenKey.user
+    }
+
     override fun onFinishInflate() {
         super.onFinishInflate()
-
         binding = ScreenUserDetailsBinding.bind(this)
 
         setupToolbar()
 
         setupTabs()
 
-        Backstack.getKey<UserDetailsScreenKey>(context).username
-            ?.let { binding.toolbar.title = it }
-            ?: throw IllegalArgumentException( "username cannot be null")
+        binding.toolbar.title = user.userName
     }
 
     private fun setupToolbar() {
@@ -43,7 +46,7 @@ class UserDetailsScreen : RelativeLayout {
     }
 
     private fun setupTabs() {
-        binding.viewPager.adapter = UserDetailsViewPager()
+        binding.viewPager.adapter = UserDetailAdapter(user)
 
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab, position ->
             tab.text = getTabTitle(position)
