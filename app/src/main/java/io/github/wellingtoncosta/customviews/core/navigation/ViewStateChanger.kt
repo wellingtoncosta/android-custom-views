@@ -8,7 +8,6 @@ import com.zhuinden.simplestack.StateChanger
 import com.zhuinden.simplestack.navigator.Navigator
 import com.zhuinden.simplestack.navigator.changehandlers.FadeViewChangeHandler
 import io.github.wellingtoncosta.customviews.R
-import io.github.wellingtoncosta.customviews.presentation.navigation.ScreenKey
 import kotlinx.coroutines.*
 
 class ViewStateChanger(

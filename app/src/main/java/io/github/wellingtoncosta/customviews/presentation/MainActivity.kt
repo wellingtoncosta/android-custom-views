@@ -6,7 +6,7 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.zhuinden.simplestack.History
 import com.zhuinden.simplestack.navigator.Navigator
-import io.github.wellingtoncosta.customviews.presentation.navigation.ServiceProvider
+import io.github.wellingtoncosta.customviews.core.navigation.ServiceProvider
 import io.github.wellingtoncosta.customviews.presentation.users.UsersScreenKey
 
 class MainActivity : AppCompatActivity() {

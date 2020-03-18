@@ -2,8 +2,8 @@ package io.github.wellingtoncosta.customviews.presentation.users
 
 import com.zhuinden.simplestack.ServiceBinder
 import io.github.wellingtoncosta.customviews.R
-import io.github.wellingtoncosta.customviews.presentation.navigation.ScreenKey
-import io.github.wellingtoncosta.customviews.presentation.navigation.ServiceProvider
+import io.github.wellingtoncosta.customviews.core.navigation.ScreenKey
+import io.github.wellingtoncosta.customviews.core.navigation.ServiceProvider
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize data class UsersScreenKey(

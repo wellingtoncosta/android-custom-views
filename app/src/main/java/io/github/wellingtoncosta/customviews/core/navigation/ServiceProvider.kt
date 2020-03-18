@@ -1,4 +1,4 @@
-package io.github.wellingtoncosta.customviews.presentation.navigation
+package io.github.wellingtoncosta.customviews.core.navigation
 
 import com.zhuinden.simplestack.ScopeKey
 import com.zhuinden.simplestack.ScopedServices
