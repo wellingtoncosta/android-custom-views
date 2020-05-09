@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.zhuinden.simplestack.History
 import com.zhuinden.simplestack.navigator.Navigator
 import io.github.wellingtoncosta.customviews.core.navigation.ServiceProvider
+import io.github.wellingtoncosta.customviews.core.navigation.ViewStateChanger
 import io.github.wellingtoncosta.customviews.presentation.users.UsersScreenKey
 
 class MainActivity : AppCompatActivity() {
@@ -15,11 +16,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val mainContainer = MainContainer(this)
-
         setContentView(mainContainer)
+
+        val stateChanger = ViewStateChanger(this, mainContainer)
 
         Navigator
             .configure()
+            .setStateChanger(stateChanger)
             .setScopedServices(ServiceProvider())
             .install(this, mainContainer, History.of(UsersScreenKey()))
     }
