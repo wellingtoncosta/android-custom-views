@@ -1,4 +1,4 @@
-package io.github.wellingtoncosta.customviews.presentation.navigation
+package io.github.wellingtoncosta.customviews.core.navigation
 
 import android.os.Parcelable
 import com.zhuinden.simplestack.navigator.DefaultViewKey

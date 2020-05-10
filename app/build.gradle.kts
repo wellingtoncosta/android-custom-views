@@ -12,13 +12,17 @@ android {
 
     defaultConfig {
         applicationId = "io.github.wellingtoncosta.customviews"
-        minSdkVersion(16)
+        minSdkVersion(21)
         targetSdkVersion(29)
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
+        }
+
+        kotlinOptions {
+            jvmTarget = "1.8"
         }
     }
 
@@ -89,6 +93,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
     implementation("androidx.viewpager2:viewpager2:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-runtime:2.2.0")
+    implementation ("androidx.lifecycle:lifecycle-common-java8:2.2.0")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.2.0")
 
     // Dagger
     implementation("com.google.dagger:dagger:2.26")

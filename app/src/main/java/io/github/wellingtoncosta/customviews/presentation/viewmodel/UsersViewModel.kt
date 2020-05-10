@@ -7,6 +7,9 @@ import androidx.lifecycle.viewModelScope
 import io.github.wellingtoncosta.customviews.api.UserService
 import io.github.wellingtoncosta.customviews.di.ViewScope
 import io.github.wellingtoncosta.customviews.domain.entity.User
+import io.github.wellingtoncosta.customviews.presentation.users.UsersUiStates
+import kotlinx.coroutines.channels.ConflatedBroadcastChannel
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,26 +17,23 @@ import javax.inject.Inject
 class UsersViewModel @Inject constructor(
     private val service: UserService
 ) : ViewModel() {
+    private val broadcast = ConflatedBroadcastChannel<UsersUiStates>()
 
-    private val _users = MutableLiveData<List<User>>()
-    private val _loading = MutableLiveData<Boolean>()
-    private val _error = MutableLiveData<Throwable>()
-
-    val users: LiveData<List<User>> get() = _users
-    val loading: LiveData<Boolean> get() = _loading
-    val error: LiveData<Throwable> get() = _error
+    val states = broadcast.asFlow()
 
     fun load() {
         viewModelScope.launch {
+            push(UsersUiStates.Loading)
             try {
-                _loading.value = true
-                _users.value = service.fetchAll()
+                val user = service.fetchAll()
+                push(UsersUiStates.Success(user))
             } catch (exception: Throwable) {
-                _error.value = exception
+                push(UsersUiStates.Failure(exception))
             } finally {
-                _loading.value = false
+                push(UsersUiStates.FinishedLoading)
             }
         }
     }
 
+    private suspend fun push(state: UsersUiStates) = broadcast.send(state)
 }
